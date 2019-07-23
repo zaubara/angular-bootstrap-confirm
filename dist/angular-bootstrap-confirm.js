@@ -89,7 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var templateUrl = $attrs.templateUrl || confirmationPopoverDefaults.templateUrl;
 	    var popoverScope = $rootScope.$new(true);
 	    var animation = vm.animation = $attrs.animation === 'true' || confirmationPopoverDefaults.animation;
-	    popoverScope.vm = vm;
+		popoverScope.vm = vm;
+		vm.closeState = $attrs.closeState || confirmationPopoverDefaults.closeState;
 
 	    function assignOuterScopeValue(attributeName, value) {
 	      var scopeName = $attrs[attributeName];
@@ -209,8 +210,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    $window.addEventListener('resize', positionPopover);
 
-	    $document.bind('click', documentClick);
-	    $document.bind('touchend', documentClick);
+	    // $document.bind('click', documentClick);
+	    // $document.bind('touchend', documentClick);
 
 	    $scope.$on('$destroy', function() {
 	      popoverLoaded.then(function(popover) {
@@ -244,7 +245,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    templateUrl: DEFAULT_POPOVER_URL,
 	    hideConfirmButton: false,
 	    hideCancelButton: false,
-	    animation: false
+		animation: false,
+		closeState: 'manualDamaged'
 	  })
 
 	  .name;
